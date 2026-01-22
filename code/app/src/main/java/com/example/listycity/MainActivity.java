@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
     }
 
     @Override
+    public void updateCity(City city, int position) {
+        dataList.set(position, city);
+        cityAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -42,7 +48,15 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
 
         FloatingActionButton fab = findViewById(R.id.button_add_city);
         fab.setOnClickListener(v -> {
-            new AddCityFragment().show(getSupportFragmentManager(), "Add City");
+            AddCityFragment fragment =
+                    AddCityFragment.newInstance(null, -1);
+            fragment.show(getSupportFragmentManager(), "Add City");
+        });
+
+        cityList.setOnItemClickListener((parent, view, position, id) -> {
+            City selectedCity = dataList.get(position);
+            AddCityFragment fragment = AddCityFragment.newInstance(selectedCity, position);
+            fragment.show(getSupportFragmentManager(), "Edit City");
         });
     }
 }

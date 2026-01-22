@@ -11,13 +11,16 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp">
+        android:elevation="4dp"
+        android:background="@color/lightGreen"
+        android:alpha="0.75">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cities"
-            android:textAppearance="?attr/textAppearanceHeadline6" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textStyle="bold" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -29,12 +32,14 @@
         android:clipToPadding="false"
         android:padding="8dp" />
 
-    <!-- Some information regarding button tinting, shape, alignments were answered by
-    Aayush Singla on stackoverflow -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/lightGreen"
+        android:tint="@color/white"
+        android:alpha="0.75"
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_input_add" />
 </LinearLayout>
