@@ -12,9 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import java.io.Serializable;
+
 public class AddCityFragment extends DialogFragment {
     interface AddCityDialogListener {
         void addCity(City city);
+    }
+
+    static AddCityFragment newInstance(City city) {
+        Bundle args = new Bundle();
+        args.putSerializable("city", (Serializable) city);
+
+        AddCityFragment fragment = new AddCityFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     private AddCityDialogListener listener;
@@ -38,7 +49,7 @@ public class AddCityFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         return builder
                 .setView(view)
-                .setTitle("Add a city")
+                .setTitle("Add/Edit a city")
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Add", (dialog, which) -> {
                     String cityName = editCityName.getText().toString();
